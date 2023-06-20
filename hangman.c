@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 int main() {
-    printf("Welcome to Hangman!\n");
+    printf("***********************\n");
+    printf("* Welcome to Hangman! *\n");
+    printf("***********************\n");
     
     return 0;
 }
