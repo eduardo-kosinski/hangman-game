@@ -51,7 +51,20 @@ int main() {
             }   
         }
 
+        if (!correct_guess) {
+            tries++;
+            printf("Incorrect guess! You have %d tries left.\n", MAX_TRIES - tries);
+        }
+            
+        if (strcmp(secret_word, guessed_word) == 0) {
+            printf("Congratulations! You won!\n");
+            break;
+        }
+        
     }
     
+    if (tries == MAX_TRIES)
+        printf("You lost! The word was %s\n", secret_word);
+
     return 0;
 }
