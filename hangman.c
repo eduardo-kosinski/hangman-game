@@ -77,6 +77,9 @@ int main() {
             }   
         }
 
+        // Clean the screen
+        printf("\e[1;1H\e[2J"); 
+
         if (!correctGuess) {
             tries++;
             printf("Incorrect guess! You have %d tries left.\n", MAX_TRIES - tries);
@@ -87,6 +90,7 @@ int main() {
             break;
         }
         
+
     }
     
     if (tries == MAX_TRIES)
