@@ -8,12 +8,12 @@
 #define MAX_WORD_LENGTH 100
 
 int main() {
-    char secret_word[MAX_WORD_LENGTH];
-    char guessed_word[MAX_WORD_LENGTH];
+    char secretWord[MAX_WORD_LENGTH];
+    char guessedWord[MAX_WORD_LENGTH];
     int tries = 0;
     int wordLength;
     char guess;
-    bool correct_guess;
+    bool correctGuess;
 
     // Opening entrance
     printf("***********************\n");
@@ -22,41 +22,41 @@ int main() {
 
     // Word input for testing
     printf("Enter the secret word: ");
-    scanf("%s", secret_word);
-    printf("%s\n", secret_word);
+    scanf("%s", secretWord);
+    printf("%s\n", secretWord);
 
-    wordLength = strlen(secret_word);
+    wordLength = strlen(secretWord);
 
     for (int i = 0; i < wordLength; i++)
-        guessed_word[i] = '-';
+        guessedWord[i] = '-';
 
-    guessed_word[wordLength] = '\0';
+    guessedWord[wordLength] = '\0';
 
-    printf("%s\n", guessed_word);
+    printf("%s\n", guessedWord);
 
     while (tries < MAX_TRIES) {
-        printf("Guessed word: %s\n", guessed_word);
+        printf("Guessed word: %s\n", guessedWord);
         printf("Enter your guess: ");
         scanf(" %c", &guess);
         guess = tolower(guess);
 
         printf("%c\n", guess);
 
-        correct_guess = false;
+        correctGuess = false;
 
         for (int i = 0; i < wordLength; i++) {
-            if (guess == secret_word[i]) {
-                guessed_word[i] = guess;
-                correct_guess = true;
+            if (guess == secretWord[i]) {
+                guessedWord[i] = guess;
+                correctGuess = true;
             }   
         }
 
-        if (!correct_guess) {
+        if (!correctGuess) {
             tries++;
             printf("Incorrect guess! You have %d tries left.\n", MAX_TRIES - tries);
         }
             
-        if (strcmp(secret_word, guessed_word) == 0) {
+        if (strcmp(secretWord, guessedWord) == 0) {
             printf("Congratulations! You won!\n");
             break;
         }
@@ -64,7 +64,7 @@ int main() {
     }
     
     if (tries == MAX_TRIES)
-        printf("You lost! The word was %s\n", secret_word);
+        printf("You lost! The word was %s\n", secretWord);
 
     return 0;
 }
