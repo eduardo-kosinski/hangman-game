@@ -8,13 +8,21 @@
 #define MAX_TRIES 6
 #define MAX_WORD_LENGTH 100
 #define WORD_LENGTH strlen(g_secretWord)
-#define RANDOM_WORD
+//#define RANDOM_WORD
 
 char g_secretWord[MAX_WORD_LENGTH];
+char g_guessedWord[MAX_WORD_LENGTH];
+
+int tries = 0;
+char guess;
+bool correctGuess;
 
 void Entrance();
 void ChooseWord();
+void BlankGuessedWord();
+void WordGuessing();
 void ClearScreen();
+void CheckLosing();
 
 void Entrance()
 {
@@ -60,20 +68,79 @@ void ChooseWord()
 }
 #endif // RANDOM_WORD
 
-bool CorrectLetter(char letter)
+void BlankGuessedWord()
 {
     for (int i = 0; i < WORD_LENGTH; i++)
+        g_guessedWord[i] = '_';
+
+    g_guessedWord[WORD_LENGTH] = '\0';
+}
+
+// bool CorrectLetter(char letter)
+// {
+//     for (int i = 0; i < WORD_LENGTH; i++)
+//     {
+//         if (letter == g_secretWord[i])
+//         {
+//             g_guessedWord[i] = letter;
+//             return true;
+//         }
+//     }
+
+//     return false;
+// }
+
+void WordGuessing()
+{
+    while (tries < MAX_TRIES)
     {
-        if (letter == g_secretWord[i])
+        printf("You have %d tries left.\n", MAX_TRIES - tries);
+        printf("Guessed word: %s\n", g_guessedWord);
+        printf("Enter your guess: ");
+        scanf(" %c", &guess);
+        guess = tolower(guess);
+
+        printf("%c\n", guess);
+
+        correctGuess = false;
+
+        for (int i = 0; i < WORD_LENGTH; i++)
         {
-            return true;
+            if (guess == g_secretWord[i])
+            {
+                g_guessedWord[i] = guess;
+                correctGuess = true;
+            }
+        }
+
+        ClearScreen();
+
+        if (!correctGuess)
+        {
+            tries++;
+            printf("Incorrect guess!\n");
+        }
+        else
+        {
+            printf("Correct guess!\n");
+        }
+
+        if (strcmp(g_secretWord, g_guessedWord) == 0)
+        {
+            printf("Congratulations! You won!\n");
+            printf("The word was %s\n", g_secretWord);
+            break;
         }
     }
-    
-    return false;
 }
 
 void ClearScreen()
 {
     printf("\e[1;1H\e[2J");
+}
+
+void CheckLosing()
+{
+    if (tries == MAX_TRIES)
+    printf("You lost! The word was %s\n", g_secretWord);
 }
