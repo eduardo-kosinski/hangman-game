@@ -1,3 +1,4 @@
 .vscode
+output/hangman
 output/hangman.exe
 hangman.out
