@@ -15,7 +15,7 @@ void ChooseWord() {
 
     f = fopen("wordbank.txt", "r");
     if(f == 0) {
-        printf("Data base not available =(\n\n");
+        printf("Database not available =(\n\n");
         exit(1);
     }
 
@@ -39,17 +39,17 @@ int main() {
     char guess;
     bool correctGuess;
 
-    // Opening entrance
+    // Opening
     printf("***********************\n");
     printf("* Welcome to Hangman! *\n");
     printf("***********************\n");
 
     // Word input for testing
-    printf("Enter the secret word: ");
-    scanf("%s", g_secretWord);
-    printf("%s\n", g_secretWord);
+    // printf("Enter the secret word: ");
+    // scanf("%s", g_secretWord);
+    // printf("%s\n", g_secretWord);
 
-    // ChooseWord();
+    ChooseWord();
 
     wordLength = strlen(g_secretWord);
 
