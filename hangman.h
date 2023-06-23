@@ -60,6 +60,19 @@ void ChooseWord()
 }
 #endif // RANDOM_WORD
 
+bool CorrectLetter(char letter)
+{
+    for (int i = 0; i < WORD_LENGTH; i++)
+    {
+        if (letter == g_secretWord[i])
+        {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 void ClearScreen()
 {
     printf("\e[1;1H\e[2J");
