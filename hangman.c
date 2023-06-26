@@ -69,11 +69,11 @@ int main()
         }
     }
 
-    free(secretWord);
-
     // Show defeat message
     if (tries == MAX_TRIES)
         printf("You lost! The word was %s\n", secretWord);
+
+    free(secretWord);
 
     return 0;
 }
