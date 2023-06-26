@@ -14,6 +14,7 @@ void Entrance();
 char *GetRandomWord();
 char *ChooseWord();
 char *BlankGuessedWord(size_t wordLength);
+bool CorrectLetter(char letter, char* secretWord, char* guessedWord);
 void ClearScreen();
 
 void Entrance()
@@ -40,7 +41,7 @@ char *GetRandomWord()
     int wordCounter;
     fscanf(f, "%d", &wordCounter);
 
-    srand(time(0));
+    srand(time(NULL));
     int random = rand() % wordCounter;
 
     printf("Getting a random word from database...\n");
@@ -76,19 +77,24 @@ char *BlankGuessedWord(size_t wordLength)
     return guessedWord;
 }
 
-// bool CorrectLetter(char letter)
-// {
-//     for (int i = 0; i < WORD_LENGTH; i++)
-//     {
-//         if (letter == secretWord[i])
-//         {
-//             guessedWord[i] = letter;
-//             return true;
-//         }
-//     }
+bool CorrectLetter(char letter, char* secretWord, char* guessedWord)
+{
+    int correctLetter = 0;
 
-//     return false;
-// }
+    for (int i = 0; i < WORD_LENGTH; i++)
+    {
+        if (letter == secretWord[i])
+        {
+            guessedWord[i] = letter;
+            correctLetter = 1; // Flag for repeated letters case
+        }
+    }
+
+    if (correctLetter)
+        return true;
+    else
+        return false;
+}
 
 void ClearScreen()
 {

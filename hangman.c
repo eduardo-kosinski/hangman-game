@@ -4,7 +4,6 @@ int main()
 {
     int triesLeft = MAX_TRIES;
     char guess;
-    bool correctGuess;
 
     // Opening
     Entrance();
@@ -28,32 +27,18 @@ int main()
         scanf(" %c", &guess);
         guess = tolower(guess);
 
-        printf("%c\n", guess);
-
-        correctGuess = false;
-
-        for (int i = 0; i < WORD_LENGTH; i++)
-        {
-            if (guess == secretWord[i])
-            {
-                guessedWord[i] = guess;
-                correctGuess = true;
-            }
-        }
-
         ClearScreen();
 
-        if (!correctGuess)
+        // Checks if the guess is correct
+        if (CorrectLetter(guess, secretWord, guessedWord))
+            printf("Correct guess!\n");
+        else
         {
             triesLeft--;
             printf("Incorrect guess!\n");
         }
-        else
-        {
-            printf("Correct guess!\n");
-        }
 
-        if (strcmp(secretWord, guessedWord) == 0)
+        if (strcmp(secretWord, guessedWord) == NULL)
         {
             printf("Congratulations! You won!\n");
             printf("The word was %s\n", secretWord);
