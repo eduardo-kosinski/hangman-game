@@ -7,22 +7,15 @@
 
 #define MAX_TRIES 6
 #define MAX_WORD_LENGTH 100
-#define WORD_LENGTH strlen(g_secretWord)
-//#define RANDOM_WORD
-
-char g_secretWord[MAX_WORD_LENGTH];
-char g_guessedWord[MAX_WORD_LENGTH];
-
-int tries = 0;
-char guess;
-bool correctGuess;
+#define WORD_LENGTH strlen(secretWord)
+#define RANDOM_WORD
 
 void Entrance();
-void ChooseWord();
-void BlankGuessedWord();
-void WordGuessing();
+char* ChooseRandomWord();
+// void BlankGuessedWord();
+// void WordGuessing();
 void ClearScreen();
-void CheckLosing();
+// void CheckLosing();
 
 void Entrance()
 {
@@ -31,14 +24,14 @@ void Entrance()
     printf("***********************\n");
 }
 
-void ChooseWord()
-#ifdef RANDOM_WORD
+char* ChooseRandomWord()
 {
     FILE *f;
+    char* secretWord = NULL;
 
     // This file must be on output directory!
     f = fopen("wordbank.txt", "r");
-    if (f == 0)
+    if (f == NULL)
     {
         printf("Database not available =(\n\n");
         exit(1);
@@ -55,34 +48,66 @@ void ChooseWord()
 
     for (int i = 0; i <= random; i++)
     {
-        fscanf(f, "%s", g_secretWord);
+        secretWord = malloc(MAX_WORD_LENGTH * sizeof(char));
+        fscanf(f, "%s", secretWord);
     }
 
     fclose(f);
+    return secretWord;
 }
-#else // RANDOM_WORD
-{
-    printf("Enter the secret word: ");
-    scanf("%s", g_secretWord);
-    printf("%s\n", g_secretWord);
-}
-#endif // RANDOM_WORD
 
-void BlankGuessedWord()
-{
-    for (int i = 0; i < WORD_LENGTH; i++)
-        g_guessedWord[i] = '_';
+// void ChooseRandomWord()
+// #ifdef RANDOM_WORD
+// {
+//     FILE *f;
 
-    g_guessedWord[WORD_LENGTH] = '\0';
-}
+//     // This file must be on output directory!
+//     f = fopen("wordbank.txt", "r");
+//     if (f == 0)
+//     {
+//         printf("Database not available =(\n\n");
+//         exit(1);
+//     }
+
+//     // The first line of the file is the number of words
+//     int wordCounter;
+//     fscanf(f, "%d", &wordCounter);
+
+//     srand(time(0));
+//     int random = rand() % wordCounter;
+
+//     printf("Getting a random word from database...\n");
+
+//     for (int i = 0; i <= random; i++)
+//     {
+//         fscanf(f, "%s", secretWord);
+//     }
+
+//     fclose(f);
+// }
+// #else // RANDOM_WORD
+// {
+//     printf("Enter the secret word: ");
+//     scanf("%s", secretWord);
+//     printf("%s\n", secretWord);
+// }
+// #endif // RANDOM_WORD
+
+// void BlankGuessedWord()
+// {
+//     for (int i = 0; i < WORD_LENGTH; i++)
+//         guessedWord[i] = '_';
+
+//     guessedWord[WORD_LENGTH] = '\0';
+// }
 
 // bool CorrectLetter(char letter)
 // {
 //     for (int i = 0; i < WORD_LENGTH; i++)
 //     {
-//         if (letter == g_secretWord[i])
+//         if (letter == secretWord[i])
 //         {
-//             g_guessedWord[i] = letter;
+//             guessedWord[i] = letter;
 //             return true;
 //         }
 //     }
@@ -90,57 +115,57 @@ void BlankGuessedWord()
 //     return false;
 // }
 
-void WordGuessing()
-{
-    while (tries < MAX_TRIES)
-    {
-        printf("You have %d tries left.\n", MAX_TRIES - tries);
-        printf("Guessed word: %s\n", g_guessedWord);
-        printf("Enter your guess: ");
-        scanf(" %c", &guess);
-        guess = tolower(guess);
+// void WordGuessing()
+// {
+//     while (tries < MAX_TRIES)
+//     {
+//         printf("You have %d tries left.\n", MAX_TRIES - tries);
+//         printf("Guessed word: %s\n", guessedWord);
+//         printf("Enter your guess: ");
+//         scanf(" %c", &guess);
+//         guess = tolower(guess);
 
-        printf("%c\n", guess);
+//         printf("%c\n", guess);
 
-        correctGuess = false;
+//         correctGuess = false;
 
-        for (int i = 0; i < WORD_LENGTH; i++)
-        {
-            if (guess == g_secretWord[i])
-            {
-                g_guessedWord[i] = guess;
-                correctGuess = true;
-            }
-        }
+//         for (int i = 0; i < WORD_LENGTH; i++)
+//         {
+//             if (guess == secretWord[i])
+//             {
+//                 guessedWord[i] = guess;
+//                 correctGuess = true;
+//             }
+//         }
 
-        ClearScreen();
+//         ClearScreen();
 
-        if (!correctGuess)
-        {
-            tries++;
-            printf("Incorrect guess!\n");
-        }
-        else
-        {
-            printf("Correct guess!\n");
-        }
+//         if (!correctGuess)
+//         {
+//             tries++;
+//             printf("Incorrect guess!\n");
+//         }
+//         else
+//         {
+//             printf("Correct guess!\n");
+//         }
 
-        if (strcmp(g_secretWord, g_guessedWord) == 0)
-        {
-            printf("Congratulations! You won!\n");
-            printf("The word was %s\n", g_secretWord);
-            break;
-        }
-    }
-}
+//         if (strcmp(secretWord, guessedWord) == 0)
+//         {
+//             printf("Congratulations! You won!\n");
+//             printf("The word was %s\n", secretWord);
+//             break;
+//         }
+//     }
+// }
 
 void ClearScreen()
 {
     printf("\e[1;1H\e[2J");
 }
 
-void CheckLosing()
-{
-    if (tries == MAX_TRIES)
-    printf("You lost! The word was %s\n", g_secretWord);
-}
+// void CheckLosing()
+// {
+//     if (tries == MAX_TRIES)
+//         printf("You lost! The word was %s\n", secretWord);
+// }
