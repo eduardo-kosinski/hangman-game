@@ -2,7 +2,6 @@
 
 int main()
 {
-    //char secretWord[MAX_WORD_LENGTH];
     char guessedWord[MAX_WORD_LENGTH];
 
     int tries = 0;
@@ -14,7 +13,7 @@ int main()
 
     // Pick a random word from database
 #ifdef RANDOM_WORD
-    char* secretWord = ChooseRandomWord();
+    char* secretWord = GetRandomWord();
 #else  // RANDOM_WORD
     printf("Enter the secret word: ");
     scanf("%s", secretWord);

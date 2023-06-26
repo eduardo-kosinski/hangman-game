@@ -11,7 +11,7 @@
 #define RANDOM_WORD
 
 void Entrance();
-char* ChooseRandomWord();
+char* GetRandomWord();
 // void BlankGuessedWord();
 // void WordGuessing();
 void ClearScreen();
@@ -24,7 +24,7 @@ void Entrance()
     printf("***********************\n");
 }
 
-char* ChooseRandomWord()
+char* GetRandomWord()
 {
     FILE *f;
     char* secretWord = NULL;
