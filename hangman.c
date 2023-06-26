@@ -2,7 +2,7 @@
 
 int main()
 {
-    int tries = 0;
+    int triesLeft = MAX_TRIES;
     char guess;
     bool correctGuess;
 
@@ -20,9 +20,9 @@ int main()
     char *guessedWord = BlankGuessedWord(WORD_LENGTH);
 
     // Game loop
-    while (tries < MAX_TRIES)
+    while (triesLeft)
     {
-        printf("You have %d tries left.\n", MAX_TRIES - tries);
+        printf("You have %d tries left.\n", triesLeft);
         printf("Guessed word: %s\n", guessedWord);
         printf("Enter your guess: ");
         scanf(" %c", &guess);
@@ -45,7 +45,7 @@ int main()
 
         if (!correctGuess)
         {
-            tries++;
+            triesLeft--;
             printf("Incorrect guess!\n");
         }
         else
@@ -62,7 +62,7 @@ int main()
     }
 
     // Show defeat message
-    if (tries == MAX_TRIES)
+    if (!triesLeft)
         printf("You lost! The word was %s\n", secretWord);
 
     free(secretWord);
