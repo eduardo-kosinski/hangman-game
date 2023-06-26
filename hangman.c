@@ -6,17 +6,17 @@ int main()
     char guess;
 
     // Opening
-    Entrance();
+    printEntrance();
 
     // Pick a random word from database or input word
 #ifdef RANDOM_WORD
-    char *secretWord = GetRandomWord();
+    char *secretWord = getRandomWord();
 #else
-    char *secretWord = ChooseWord();
+    char *secretWord = chooseWord();
 #endif // RANDOM_WORD
 
     // Hide secret word into guessed word
-    char *guessedWord = BlankGuessedWord(WORD_LENGTH);
+    char *guessedWord = initializeGuessedWord(strlen(secretWord));
 
     // Game loop
     while (triesLeft)
@@ -27,10 +27,10 @@ int main()
         scanf(" %c", &guess);
         guess = tolower(guess);
 
-        ClearScreen();
+        clearScreen();
 
         // Checks if the guess is correct
-        if (CorrectLetter(guess, secretWord, guessedWord))
+        if (isCorrectGuess(guess, secretWord, guessedWord))
             printf("Correct guess!\n");
         else
         {

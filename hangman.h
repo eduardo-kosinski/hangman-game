@@ -6,24 +6,23 @@
 
 #define MAX_TRIES 6
 #define MAX_WORD_LENGTH 100
-#define WORD_LENGTH strlen(secretWord)
 #define RANDOM_WORD
 
-void Entrance();
-char *GetRandomWord();
-char *ChooseWord();
-char *BlankGuessedWord(size_t wordLength);
-int CorrectLetter(char letter, char* secretWord, char* guessedWord);
-void ClearScreen();
+void printEntrance();
+char *getRandomWord();
+char *chooseWord();
+char *initializeGuessedWord(size_t wordLength);
+int isCorrectGuess(char letter, char* secretWord, char* guessedWord);
+void clearScreen();
 
-void Entrance()
+void printEntrance()
 {
     printf("***********************\n");
     printf("* Welcome to Hangman! *\n");
     printf("***********************\n");
 }
 
-char *GetRandomWord()
+char *getRandomWord()
 {
     FILE *f;
     char *secretWord = malloc(MAX_WORD_LENGTH * sizeof(char));
@@ -54,7 +53,7 @@ char *GetRandomWord()
     return secretWord;
 }
 
-char *ChooseWord()
+char *chooseWord()
 {
     char *secretWord = malloc(MAX_WORD_LENGTH * sizeof(char));
 
@@ -64,7 +63,7 @@ char *ChooseWord()
     return secretWord;
 }
 
-char *BlankGuessedWord(size_t wordLength)
+char *initializeGuessedWord(size_t wordLength)
 {
     char *guessedWord = malloc(wordLength * sizeof(char));
 
@@ -76,11 +75,11 @@ char *BlankGuessedWord(size_t wordLength)
     return guessedWord;
 }
 
-int CorrectLetter(char letter, char* secretWord, char* guessedWord)
+int isCorrectGuess(char letter, char* secretWord, char* guessedWord)
 {
     int correctLetter = 0;
 
-    for (int i = 0; i < WORD_LENGTH; i++)
+    for (int i = 0; i < strlen(secretWord); i++)
     {
         if (letter == secretWord[i])
         {
@@ -95,7 +94,7 @@ int CorrectLetter(char letter, char* secretWord, char* guessedWord)
         return 0;
 }
 
-void ClearScreen()
+void clearScreen()
 {
     printf("\e[1;1H\e[2J");
 }
