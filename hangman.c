@@ -11,13 +11,13 @@ int main()
 
     // Pick a random word from database or input word
 #ifdef RANDOM_WORD
-    char* secretWord = GetRandomWord();
-#else 
-    char* secretWord = ChooseWord();
+    char *secretWord = GetRandomWord();
+#else
+    char *secretWord = ChooseWord();
 #endif // RANDOM_WORD
 
     // Hide secret word into guessed word
-    char* guessedWord = BlankGuessedWord(WORD_LENGTH);
+    char *guessedWord = BlankGuessedWord(WORD_LENGTH);
 
     // Game loop
     while (tries < MAX_TRIES)
