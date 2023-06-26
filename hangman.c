@@ -2,8 +2,6 @@
 
 int main()
 {
-    // char guessedWord[MAX_WORD_LENGTH];
-
     int tries = 0;
     char guess;
     bool correctGuess;
@@ -68,6 +66,7 @@ int main()
         printf("You lost! The word was %s\n", secretWord);
 
     free(secretWord);
+    free(guessedWord);
 
     return 0;
 }
