@@ -29,7 +29,7 @@ char* ChooseRandomWord()
     FILE *f;
     char* secretWord = NULL;
 
-    // This file must be on output directory!
+    // This file must be on the same directory as hangman file!
     f = fopen("wordbank.txt", "r");
     if (f == NULL)
     {
