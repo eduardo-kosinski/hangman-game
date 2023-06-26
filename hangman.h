@@ -56,43 +56,6 @@ char* ChooseRandomWord()
     return secretWord;
 }
 
-// void ChooseRandomWord()
-// #ifdef RANDOM_WORD
-// {
-//     FILE *f;
-
-//     // This file must be on output directory!
-//     f = fopen("wordbank.txt", "r");
-//     if (f == 0)
-//     {
-//         printf("Database not available =(\n\n");
-//         exit(1);
-//     }
-
-//     // The first line of the file is the number of words
-//     int wordCounter;
-//     fscanf(f, "%d", &wordCounter);
-
-//     srand(time(0));
-//     int random = rand() % wordCounter;
-
-//     printf("Getting a random word from database...\n");
-
-//     for (int i = 0; i <= random; i++)
-//     {
-//         fscanf(f, "%s", secretWord);
-//     }
-
-//     fclose(f);
-// }
-// #else // RANDOM_WORD
-// {
-//     printf("Enter the secret word: ");
-//     scanf("%s", secretWord);
-//     printf("%s\n", secretWord);
-// }
-// #endif // RANDOM_WORD
-
 // void BlankGuessedWord()
 // {
 //     for (int i = 0; i < WORD_LENGTH; i++)
