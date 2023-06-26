@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
@@ -14,7 +13,7 @@ void Entrance();
 char *GetRandomWord();
 char *ChooseWord();
 char *BlankGuessedWord(size_t wordLength);
-bool CorrectLetter(char letter, char* secretWord, char* guessedWord);
+int CorrectLetter(char letter, char* secretWord, char* guessedWord);
 void ClearScreen();
 
 void Entrance()
@@ -77,7 +76,7 @@ char *BlankGuessedWord(size_t wordLength)
     return guessedWord;
 }
 
-bool CorrectLetter(char letter, char* secretWord, char* guessedWord)
+int CorrectLetter(char letter, char* secretWord, char* guessedWord)
 {
     int correctLetter = 0;
 
@@ -91,9 +90,9 @@ bool CorrectLetter(char letter, char* secretWord, char* guessedWord)
     }
 
     if (correctLetter)
-        return true;
+        return 1;
     else
-        return false;
+        return 0;
 }
 
 void ClearScreen()
