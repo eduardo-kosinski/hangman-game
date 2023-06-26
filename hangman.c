@@ -11,13 +11,11 @@ int main()
     // Opening
     Entrance();
 
-    // Pick a random word from database
+    // Pick a random word from database or input word
 #ifdef RANDOM_WORD
     char* secretWord = GetRandomWord();
-#else  // RANDOM_WORD
-    printf("Enter the secret word: ");
-    scanf("%s", secretWord);
-    printf("%s\n", secretWord);
+#else 
+    char* secretWord = ChooseWord();
 #endif // RANDOM_WORD
 
     // Hide secret word into guessed word

@@ -12,6 +12,7 @@
 
 void Entrance();
 char* GetRandomWord();
+char* ChooseWord();
 // void BlankGuessedWord();
 // void WordGuessing();
 void ClearScreen();
@@ -53,6 +54,16 @@ char* GetRandomWord()
     }
 
     fclose(f);
+    return secretWord;
+}
+
+char* ChooseWord()
+{
+    char* secretWord = malloc(MAX_WORD_LENGTH * sizeof(char));
+
+    printf("Enter the secret word: ");
+    scanf("%s", secretWord);
+
     return secretWord;
 }
 
