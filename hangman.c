@@ -2,7 +2,7 @@
 
 int main()
 {
-    char guessedWord[MAX_WORD_LENGTH];
+    // char guessedWord[MAX_WORD_LENGTH];
 
     int tries = 0;
     char guess;
@@ -19,10 +19,7 @@ int main()
 #endif // RANDOM_WORD
 
     // Hide secret word into guessed word
-    for (int i = 0; i < WORD_LENGTH; i++)
-        guessedWord[i] = '_';
-
-    guessedWord[WORD_LENGTH] = '\0';
+    char* guessedWord = BlankGuessedWord(WORD_LENGTH);
 
     // Game loop
     while (tries < MAX_TRIES)

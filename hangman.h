@@ -13,10 +13,8 @@
 void Entrance();
 char* GetRandomWord();
 char* ChooseWord();
-// void BlankGuessedWord();
-// void WordGuessing();
+char* BlankGuessedWord(size_t wordLength);
 void ClearScreen();
-// void CheckLosing();
 
 void Entrance()
 {
@@ -28,7 +26,7 @@ void Entrance()
 char* GetRandomWord()
 {
     FILE *f;
-    char* secretWord = NULL;
+    char* secretWord = malloc(MAX_WORD_LENGTH * sizeof(char));
 
     // This file must be on the same directory as hangman file!
     f = fopen("wordbank.txt", "r");
@@ -49,7 +47,6 @@ char* GetRandomWord()
 
     for (int i = 0; i <= random; i++)
     {
-        secretWord = malloc(MAX_WORD_LENGTH * sizeof(char));
         fscanf(f, "%s", secretWord);
     }
 
@@ -67,13 +64,17 @@ char* ChooseWord()
     return secretWord;
 }
 
-// void BlankGuessedWord()
-// {
-//     for (int i = 0; i < WORD_LENGTH; i++)
-//         guessedWord[i] = '_';
+char* BlankGuessedWord(size_t wordLength)
+{
+    char* guessedWord = malloc(wordLength * sizeof(char));;
+    
+    for (int i = 0; i < wordLength; i++)
+        guessedWord[i] = '_';
 
-//     guessedWord[WORD_LENGTH] = '\0';
-// }
+    guessedWord[wordLength] = '\0';
+
+    return guessedWord;
+}
 
 // bool CorrectLetter(char letter)
 // {
