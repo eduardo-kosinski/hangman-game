@@ -75,15 +75,15 @@ char *initializeGuessedWord(size_t wordLength)
     return guessedWord;
 }
 
-int isCorrectGuess(char letter, char* secretWord, char* guessedWord)
+int isCorrectGuess(char guess, char* secretWord, char* guessedWord)
 {
     int correctLetter = 0;
 
     for (int i = 0; i < strlen(secretWord); i++)
     {
-        if (letter == secretWord[i])
+        if (guess == tolower(secretWord[i]))
         {
-            guessedWord[i] = letter;
+            guessedWord[i] = guess;
             correctLetter = 1; // Flag for repeated letters case
         }
     }
