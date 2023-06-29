@@ -43,8 +43,6 @@ char *getRandomWord()
     srand(time(NULL));
     int random = rand() % wordCounter;
 
-    printf("Getting a random word from database...\n");
-
     for (int i = 0; i <= random; i++)
     {
         fscanf(f, "%s", secretWord);
