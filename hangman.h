@@ -103,14 +103,11 @@ int isCorrectGuess(char guess, char* secretWord, char* guessedWord)
         if (guess == tolower(secretWord[i]))
         {
             guessedWord[i] = guess;
-            correctLetter = 1; // Flag for repeated letters case
+            correctLetter = 1; 
         }
     }
 
-    if (correctLetter)
-        return 1;
-    else
-        return 0;
+    return correctLetter;
 }
 
 void clearScreen()
