@@ -31,7 +31,7 @@ int main()
             printf("\nEnter your guess: ");
             scanf(" %c", &guess);
             guess = tolower(guess);
-            
+
             clearScreen();
         } while (!isValidGuess(guess, guessedLetters, numGuessedLetters));
 
@@ -48,13 +48,11 @@ int main()
 
         if (strcmp(secretWord, guessedWord) == NULL)
         {
-            printf("Congratulations! You won!\n");
-            printf("The word was %s\n", secretWord);
+            printf("Congratulations! You won!\nThe word was %s\n", secretWord);
             break;
         }
     }
 
-    // Show defeat message
     if (triesLeft == 0)
         printf("You lost! The word was %s\n", secretWord);
 
