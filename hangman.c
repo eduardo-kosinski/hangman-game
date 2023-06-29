@@ -2,8 +2,10 @@
 
 int main()
 {
-    int triesLeft = MAX_TRIES;
     char guess;
+    char guessedLetters[MAX_WORD_LENGTH] = {0};
+    int triesLeft = MAX_TRIES;
+    int numGuessedLetters = 0;
 
     printEntrance();
 
@@ -17,11 +19,22 @@ int main()
 
     while (triesLeft)
     {
-        printf("You have %d tries left.\n", triesLeft);
-        printf("Guessed word: %s\n", guessedWord);
-        printf("Enter your guess: ");
-        scanf(" %c", &guess);
-        clearScreen();
+        do
+        {
+            printf("You have %d tries left.\n", triesLeft);
+            printf("Guessed word: %s\n", guessedWord);
+            printf("Tried letters: ");
+
+            for (int i = 0; i < numGuessedLetters; i++)
+                printf("%c ", guessedLetters[i]);
+
+            printf("\nEnter your guess: ");
+            scanf(" %c", &guess);
+            clearScreen();
+        } while (!isValidGuess(tolower(guess), guessedLetters, numGuessedLetters));
+
+        guessedLetters[numGuessedLetters] = tolower(guess);
+        numGuessedLetters++;
 
         if (isCorrectGuess(tolower(guess), secretWord, guessedWord))
             printf("Correct guess!\n");

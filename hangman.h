@@ -12,6 +12,7 @@ void printEntrance();
 char *getRandomWord();
 char *chooseWord();
 char *initializeGuessedWord(size_t wordLength);
+int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters);
 int isCorrectGuess(char letter, char* secretWord, char* guessedWord);
 void clearScreen();
 
@@ -73,6 +74,20 @@ char *initializeGuessedWord(size_t wordLength)
     guessedWord[wordLength] = '\0';
 
     return guessedWord;
+}
+
+int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters)
+{
+    for (int i = 0; i < numGuessedLetters; i++)
+    {
+        if (guessedLetters[i] == guess)
+        {
+           printf("You already guessed the letter '%c'. Please enter a different letter.\n", guess);
+           return 0;
+        }
+    }
+
+    return 1;
 }
 
 int isCorrectGuess(char guess, char* secretWord, char* guessedWord)
