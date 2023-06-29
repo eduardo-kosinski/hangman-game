@@ -30,13 +30,15 @@ int main()
 
             printf("\nEnter your guess: ");
             scanf(" %c", &guess);
+            guess = tolower(guess);
+            
             clearScreen();
-        } while (!isValidGuess(tolower(guess), guessedLetters, numGuessedLetters));
+        } while (!isValidGuess(guess, guessedLetters, numGuessedLetters));
 
-        guessedLetters[numGuessedLetters] = tolower(guess);
+        guessedLetters[numGuessedLetters] = guess;
         numGuessedLetters++;
 
-        if (isCorrectGuess(tolower(guess), secretWord, guessedWord))
+        if (isCorrectGuess(guess, secretWord, guessedWord))
             printf("Correct guess!\n");
         else
         {

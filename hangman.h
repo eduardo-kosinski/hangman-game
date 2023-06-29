@@ -78,6 +78,12 @@ char *initializeGuessedWord(size_t wordLength)
 
 int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters)
 {
+    if (!isalpha(guess))
+    {
+        printf("Invalid guess. Please enter a valid letter.\n");
+        return 0;
+    }
+    
     for (int i = 0; i < numGuessedLetters; i++)
     {
         if (guessedLetters[i] == guess)
