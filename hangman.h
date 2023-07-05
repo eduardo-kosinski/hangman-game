@@ -12,7 +12,7 @@ void printEntrance();
 char *getRandomWord();
 char *chooseWord();
 char *initializeGuessedWord(size_t wordLength);
-void drawHangman();
+void drawHangman(int triesLeft);
 int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters);
 int isCorrectGuess(char letter, char* secretWord, char* guessedWord);
 void clearScreen();
@@ -75,9 +75,17 @@ char *initializeGuessedWord(size_t wordLength)
     return guessedWord;
 }
 
-void drawHangman()
+void drawHangman(int triesLeft)
 {
-
+    printf("  _______       \n");
+    printf(" |/      |      \n");
+    printf(" |      %c%c%c  \n", (triesLeft < MAX_TRIES?'(':' '), (triesLeft < MAX_TRIES?'_':' '), (triesLeft < MAX_TRIES?')':' '));
+    printf(" |      %c%c%c  \n", (triesLeft < (MAX_TRIES - 2)?'\\':' '), (triesLeft < (MAX_TRIES - 1)?'|':' '), (triesLeft < (MAX_TRIES - 3)?'/': ' '));
+    printf(" |       %c     \n", (triesLeft < (MAX_TRIES - 1)?'|':' '));
+    printf(" |      %c %c   \n", (triesLeft < (MAX_TRIES - 4)?'/':' '), (triesLeft < (MAX_TRIES - 5)?'\\':' '));
+    printf(" |              \n");
+    printf("_|___           \n");
+    printf("\n\n");
 }
 
 int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters)

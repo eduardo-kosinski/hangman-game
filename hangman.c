@@ -21,8 +21,8 @@ int main()
     {
         do
         {
-            drawHangman();
-            
+            drawHangman(triesLeft);
+
             printf("You have %d tries left.\n", triesLeft);
             printf("Guessed word: %s\n", guessedWord);
             printf("Tried letters: ");
@@ -56,7 +56,18 @@ int main()
     }
 
     if (triesLeft == 0)
-        printf("You lost! The word was %s\n", secretWord);
+    {
+        drawHangman(triesLeft);
+
+        printf("You have %d tries left.\n", triesLeft);
+        printf("Guessed word: %s\n", guessedWord);
+        printf("Tried letters: ");
+
+        for (int i = 0; i < numGuessedLetters; i++)
+            printf("%c ", guessedLetters[i]);
+
+        printf("\nYou lost! The word was %s\n", secretWord);
+    }
 
     free(secretWord);
     free(guessedWord);
