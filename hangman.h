@@ -12,6 +12,7 @@ void printEntrance();
 char *getRandomWord();
 char *chooseWord();
 char *initializeGuessedWord(size_t wordLength);
+void drawHangman();
 int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters);
 int isCorrectGuess(char letter, char* secretWord, char* guessedWord);
 void clearScreen();
@@ -72,6 +73,11 @@ char *initializeGuessedWord(size_t wordLength)
     guessedWord[wordLength] = '\0';
 
     return guessedWord;
+}
+
+void drawHangman()
+{
+
 }
 
 int isValidGuess(char guess, char* guessedLetters, int numGuessedLetters)

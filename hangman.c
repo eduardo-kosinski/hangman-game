@@ -21,6 +21,8 @@ int main()
     {
         do
         {
+            drawHangman();
+            
             printf("You have %d tries left.\n", triesLeft);
             printf("Guessed word: %s\n", guessedWord);
             printf("Tried letters: ");
